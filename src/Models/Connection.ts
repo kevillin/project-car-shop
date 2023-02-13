@@ -8,4 +8,6 @@ const connectToDatabase = (
     || MONGO_DB_URL,
 ) => mongoose.connect(mongoDatabaseURI);
 
+// jdjd
+
 export default connectToDatabase;
