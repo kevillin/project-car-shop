@@ -35,14 +35,15 @@ class CarController {
   public async findById() {
     const { id } = this.req.params;
 
+    if (!isValidObjectId(id)) {
+      return this.res.status(422).json({ message: 'Invalid mongo id' });
+    }
+
     try {
       const result = await this.service.findById(id);
 
       if (!result) {
         return this.res.status(404).json({ message: 'Car not found' });
-      }
-      if (!isValidObjectId(id)) {
-        return this.res.status(422).json({ message: 'Invalid mongo id' });
       }
       return this.res.status(200).json(result);
     } catch (error) {
