@@ -17,6 +17,21 @@ class CarService {
 
     return this.createCarDomain(typedKey);
   }
+
+  public async findAll() {
+    const carODM = new Cars();
+    const typedKey = await carODM.findAll();
+    const result = typedKey.map((car) => this.createCarDomain(car));
+
+    return result;
+  }
+
+  public async findById(id: string): Promise<Car | null> {
+    const carODM = new Cars();
+    const typedKey = await carODM.findById(id);
+
+    return this.createCarDomain(typedKey as ICar);
+  }
 }
 
 export default CarService;
