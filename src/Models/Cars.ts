@@ -3,7 +3,7 @@ import {
   Schema,
   model,
   models,
-  isValidObjectId,
+  UpdateQuery,
 } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 
@@ -33,7 +33,14 @@ export default class Cars {
   }
 
   public async findById(id: string) {
-    if (!isValidObjectId(id)) return { message: 'Invalid ID' };
     return this.model.findById(id);
+  }
+
+  public async updateById(id: string, obj: Partial<ICar>) {
+    return this.model.findByIdAndUpdate(
+      { _id: id },
+      { ...obj } as UpdateQuery<ICar>,
+      { new: true },
+    );
   }
 }
