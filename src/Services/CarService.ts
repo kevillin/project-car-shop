@@ -32,6 +32,7 @@ class CarService {
 
     return this.createCarDomain(typedKey as ICar);
   }
+
   public async updateById(id: string, obj: ICar): Promise<Car | null> {
     const carODM = new Cars();
     const typedKey = await carODM.updateById(id, obj);

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { Model } from 'mongoose';
 import sinon from 'sinon';
-import Car from '../../../src/Domains/Car';
+import Car from '../../../src/Domains/Vehicle';
 import ICar from '../../../src/Interfaces/ICar';
 import CarService from '../../../src/Services/CarService';
 
