@@ -43,28 +43,6 @@ describe('Deveria validar os carros', function () {
   });
   it('Listando todos os carros com sucesso', async function () {
     // Arrange
-    const carInput: ICar = {
-      model: 'Marea',
-      year: 2002,
-      color: 'Black',
-      status: true,
-      buyValue: 15.990,
-      doorsQty: 4,
-      seatsQty: 5,
-    };
-
-    const carOut1 = {
-      id: '63ebf23b03dc4ebe3041b388',
-      model: 'Marea',
-      year: 2002,
-      color: 'Black',
-      status: true,
-      buyValue: 15.99,
-      doorsQty: 4,
-      seatsQty: 5,
-    };
-
-    const carOutput: Car = new Car(carOut1);
 
     const carOut = [
       {
@@ -77,12 +55,23 @@ describe('Deveria validar os carros', function () {
         doorsQty: 4,
         seatsQty: 5,
       },
+      {
+        id: '63ebf67d632a665acc66501d',
+        model: 'Marea',
+        year: 2002,
+        color: 'Black',
+        status: true,
+        buyValue: 15.99,
+        doorsQty: 4,
+        seatsQty: 5,
+      },
     ];
 
-    sinon.stub(Model, 'find').resolves(carOut);
+    const carOutput: Car[] = carOut.map((car) => new Car(car));
+    sinon.stub(Model, 'find').resolves(carOutput);
     // Act
     const service = new CarService();
-    const result = await service.register(carInput);
+    const result = await service.findAll();
 
     expect(result).to.be.deep.equal(carOutput);
     sinon.restore();
