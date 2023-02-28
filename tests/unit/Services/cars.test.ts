@@ -39,6 +39,7 @@ describe('Deveria validar os carros', function () {
     const result = await service.register(carInput);
     // Assert
     expect(result).to.be.deep.equal(carOutput);
+    sinon.restore();
   });
   it('Listando todos os carros com sucesso', async function () {
     // Arrange
@@ -84,5 +85,6 @@ describe('Deveria validar os carros', function () {
     const result = await service.register(carInput);
 
     expect(result).to.be.deep.equal(carOutput);
+    sinon.restore();
   });
 });

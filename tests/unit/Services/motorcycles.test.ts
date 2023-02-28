@@ -5,31 +5,26 @@ import Motorcycle from '../../../src/Domains/Motorcycle';
 import IMotorcycle from '../../../src/Interfaces/IMotorcycle';
 import MotoService from '../../../src/Services/MotoService';
 
-const modelMoto = 'Honda Cb 600f Hornet';
-
-const motoInput: IMotorcycle = {
-  model: modelMoto,
-  year: 2005,
-  color: 'Yellow',
-  status: true,
-  buyValue: 30.000,
-  category: 'Street',
-  engineCapacity: 600,
-};
-
-// const RESULT_ERROR = 'Invalid Key';
-
 describe('Deveria validar as motos', function () {
   it('Criando uma moto com SUCESSO', async function () {
     // Arrange
-
-    const carOut = {
-      id: '63ebf23b03dc4ebe3041b388',
-      model: modelMoto,
+    const carInput: IMotorcycle = {
+      model: 'Honda Cb 600f Hornet',
       year: 2005,
       color: 'Yellow',
       status: true,
-      buyValue: 30.000,
+      buyValue: 30,
+      category: 'Street',
+      engineCapacity: 600,
+    };
+
+    const carOut = {
+      id: '63fa1dc2b5f9ebffd56a1b1b',
+      model: 'Honda Cb 600f Hornet',
+      year: 2005,
+      color: 'Yellow',
+      status: true,
+      buyValue: 30,
       category: 'Street',
       engineCapacity: 600,
     };
@@ -39,22 +34,33 @@ describe('Deveria validar as motos', function () {
     sinon.stub(Model, 'create').resolves(carOutput);
     // Act
     const service = new MotoService();
-    const result = await service.register(motoInput);
+    const result = await service.register(carInput);
     // Assert
     expect(result).to.be.deep.equal(carOutput);
+
+    sinon.restore();
   });
-  it('Listando todas as motos com sucesso', async function () {
+  it('Listando todos os carros com sucesso', async function () {
     // Arrange
+    const carInput: IMotorcycle = {
+      model: 'Marea',
+      year: 2002,
+      color: 'Black',
+      status: true,
+      buyValue: 15.99,
+      category: 'Street',
+      engineCapacity: 5,
+    };
 
     const carOut1 = {
-      id: '63ebf23b03dc4ebe3041b388',
-      model: 'Honda Cb 600f Horne',
-      year: 2005,
-      color: 'Yellow',
+      id: '63ebf67d632a665acc66501d',
+      model: 'Marea',
+      year: 2002,
+      color: 'Black',
       status: true,
-      buyValue: 30.000,
+      buyValue: 15.99,
       category: 'Street',
-      engineCapacity: 600,
+      engineCapacity: 5,
     };
 
     const carOutput: Motorcycle = new Motorcycle(carOut1);
@@ -62,21 +68,23 @@ describe('Deveria validar as motos', function () {
     const carOut = [
       {
         id: '63ebf67d632a665acc66501d',
-        model: 'Honda Cb 600f Hornet',
-        year: 2005,
-        color: 'Yellow',
+        model: 'Marea',
+        year: 2002,
+        color: 'Black',
         status: true,
-        buyValue: 30.000,
+        buyValue: 15.99,
         category: 'Street',
-        engineCapacity: 600,
+        engineCapacity: 5,
       },
     ];
 
     sinon.stub(Model, 'find').resolves(carOut);
     // Act
     const service = new MotoService();
-    const result = await service.register(motoInput);
+    const result = await service.register(carInput);
 
     expect(result).to.be.deep.equal(carOutput);
+
+    sinon.restore();
   });
 });
