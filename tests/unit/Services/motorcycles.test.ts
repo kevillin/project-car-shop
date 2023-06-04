@@ -42,28 +42,6 @@ describe('Deveria validar as motos', function () {
   });
   it('Listando todas as motos com sucesso', async function () {
     // Arrange
-    // const carInput: IMotorcycle = {
-    //   model: 'Marea',
-    //   year: 2002,
-    //   color: 'Black',
-    //   status: true,
-    //   buyValue: 15.99,
-    //   category: 'Street',
-    //   engineCapacity: 5,
-    // };
-
-    // const carOut1 = {
-    //   id: '63ebf67d632a665acc66501d',
-    //   model: 'Marea',
-    //   year: 2002,
-    //   color: 'Black',
-    //   status: true,
-    //   buyValue: 15.99,
-    //   category: 'Street',
-    //   engineCapacity: 5,
-    // };
-
-    // const carOutput: Motorcycle = new Motorcycle(carOut1);
 
     const carOut = [
       {
